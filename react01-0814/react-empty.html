@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 步驟1：載入React -> Bable(line11) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 步驟2：載入root根元素 -->
+    <div id="root"></div>
+
+    <!-- 步驟3：建立React元件 -->
+    <!-- script的type必定寫text/babel -->
+    <script type="text/babel">
+        // 建立元件的function(元件名稱字首必定大寫)
+        function App() {
+            // JSX寫法
+            return <h1>Hello,React!</h1>
+        }
+        // 步驟4：渲染(顯示)元件到root元件上
+        // 用const宣告!!
+        const e1 = document.getElementById('root');
+        const root = ReactDOM.createRoot(e1);
+        // root.render(<App></App>);
+        // 簡寫如下：
+        root.render(<App/>);
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

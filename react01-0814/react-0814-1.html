@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 步驟1：載入React -> Bable(line11) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        img {
+            width: 500px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 步驟2：載入root根元素 -->
+    <div id="root"></div>
+
+    <!-- 步驟3：建立React元件 -->
+    <!-- script的type必定寫text/babel -->
+    <script type="text/babel">
+        // 建立元件的function(元件名稱字首必定大寫)
+        function App() {
+            // JSX寫法
+            // html語法寫在return底下
+            // 1. return內的html標籤必定都要有結尾標籤(或用/來表示結尾)
+            // 2. 第一層的html標籤必定寫在return後面，不能寫在return下一行
+            // 3. 要不然就是在return後面寫上()，html內容寫在()內
+            // 4. return只會讀取一個0階結構，若寫兩個0階的結構，會出錯
+            // 5. 或用沒有標籤的<></>來當作第0階 ==>  <> html內容 </>
+            return (
+                <div>
+                    <div>
+                        <h2>我是圖片</h2>
+                        <img id="view" src="https://cdn.pixabay.com/photo/2024/07/29/02/28/snake-8928741_1280.jpg" alt="" />
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, velit molestiae aliquid impedit dolor exercitationem ratione, rem non sapiente porro aliquam deserunt nesciunt facilis quam corporis praesentium adipisci repellendus architecto.</p>
+                </div>
+            )
+
+            // return <>
+            //     <div>
+            //         <div>
+            //             <h2>我是圖片</h2>
+            //             <img id="view" src="https://cdn.pixabay.com/photo/2024/07/29/02/28/snake-8928741_1280.jpg" alt="" />
+            //         </div>
+            //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, velit molestiae aliquid impedit dolor exercitationem ratione, rem non sapiente porro aliquam deserunt nesciunt facilis quam corporis praesentium adipisci repellendus architecto.</p>
+            //     </div>
+            // </>
+
+
+
+
+
+
+
+        }
+        // 步驟4：渲染(顯示)元件到root元件上
+        const e1 = document.getElementById('root');
+        const root = ReactDOM.createRoot(e1);
+        root.render(<App />);
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

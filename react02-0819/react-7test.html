@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../javascripts/vendor.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+        integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        main {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            margin: 30px auto;
+        }
+
+        #topbar {
+            width: 100%;
+            height: 40px;
+            background-color: #464e56;
+
+        }
+
+        #topbar ul {
+            width: 90%;
+            background-color: #464e56;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            color: white;
+        }
+
+        .article {
+            width: 90%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            margin: 30px auto;
+        }
+
+        .content {
+            font-size: 18px;
+            letter-spacing: 2px;
+            line-height: 1.8rem;
+        }
+
+        .content p {
+            margin-bottom: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 步驟一：加入 root DOM -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const data = {
+            imgUrl: 'https://s.yimg.com/ny/api/res/1.2/w1tw3Y1L01IqtVZNAiih3Q--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTY0MDtjZj13ZWJw/https://s.yimg.com/os/creatr-uploaded-images/2024-08/be74ac70-5d57-11ef-add7-b3cb352e9c33',
+            title: '卡片標題',
+            desc: ' 奧運金牌加持熱度爆表 林郁婷：到現在不敢自己出門',
+        }
+
+        function App() {
+            return (<>
+                <headr id='topbar'>
+                    <ul>
+                        <li>首頁</li>
+                        <li>電子信箱</li>
+                        <li>新聞</li>
+                        <li>股市</li>
+                        <li>氣象</li>
+                        <li>運動</li>
+                        <li>Yahoo TV</li>
+                        <li>App 下載</li>
+                        <li>購物中心</li>
+                        <li>拍賣</li>
+                        <li>更多...</li>
+                    </ul>
+                </headr>
+
+                <main>
+                    <h1>奧運金牌加持熱度爆表 林郁婷：到現在不敢自己出門</h1>
+                    <div className='article'>
+                        <p style={{ fontWeight: 'bold', }}>The Central News Agency 中央通訊社</p>
+                        <small style={{ color: 'gray', marginBottom: '16px', }}>2024年8月18日 週日 下午7:23</small>
+                        <div style={{
+                            width: '300px',
+                            height: '8px',
+                            backgroundColor: 'black',
+                            marginBottom: '16px',
+                        }}></div>
+                        <figure style={{ width: '100%', }}><img src={data.imgUrl} alt="" style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                        }} /></figure>
+                        <small style={{ color: 'gray', marginBottom: '24px', }}>{data.desc}</small>
+                        <p className='content'>
+                            <p>（中央社記者黎建忠台北18日電）拿下巴黎奧運女子拳擊金牌的「台灣女兒」林郁婷，今天與李洋一同出席首場商業活動時再度吸引大批粉絲包圍；林郁婷表示，自己真的被嚇到了，「到現在我都還不敢自己出門」。</p>
+                            <p>林郁婷今天上午先返鄉參加鶯歌遊行，沿途鞭炮聲、加油聲不斷，下午出席台灣機能運動服飾品牌活動時笑說：「面對這樣的聲量和熱度，我真的完全被嚇到，我從回台灣到現在，都還沒有一個人出門過。」</p>
+                            <p>她也透露，自己的IG追蹤人數，從奧運前到現在大概增加了30~40倍，每天都快被訊息淹沒了。</p>
+                            <p>林郁婷在接受中央社記者訪問時表示，從早上遊行到下午活動，完全沒想過一個奧運金牌效益會這麼大，「不過這也督促我，要讓自己變成更好的人，希望能藉由自己的力量，把這股熱度繼續延燒下去，讓更多人認識台灣的運動、台灣的拳擊。」</p>
+                            <p>林郁婷也提到，這股熱潮總有退燒一天，「大家也會慢慢淡忘我，所以我也要準備回歸選手身分、投入訓練和比賽，繼續往下一個階段的目標邁進。」</p>
+                            <p>教練曾自強透露，目前預計8月27日會帶自己的另一個男子選手李承威到韓國參賽，到時候也會帶上林郁婷去當陪練。</p>
+                            <p>今天活動當中，林郁婷與李洋也進行「跨界交流戰」，林郁婷戴上特製的大拳擊手套，和李洋打了一個羽球賽，她笑說：「回台灣之後還是第一次戴上拳套，感覺很新鮮。」（編輯：陳仁華）1130818</p>
+                        </p>
+                    </div>
+                </main>
+
+
+            </>)
+        }
+
+
+
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+    </script>
+
+
+
+
+</body>
+
+</html>
