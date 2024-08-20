@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- bootstrap的js -->
+    <script src="./javascripts/vendor.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+        integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+
+
+
+    <!-- 以下React -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // 建立圖片元件
+        // 元件名稱字首大寫
+        function GetImg(props) {
+            // 元件結束後必須要有回傳值
+            return (
+                <img title={props.title} src={props.imgUrl} alt="" style={{
+                    // width: '300px',
+                    // border: '1px solid red',
+                    // margin: '10px',
+                    // 亦可如下寫法
+                    width:props.width,
+                    margin: "10px",
+                    border:props.border,
+                }} />
+            );
+        }
+
+        // 建立React元件
+        function App() {
+            // JSX寫法
+            return (
+                <div>
+                    <h2>呼叫圖片元件</h2>
+                    {/* 呼叫元件:擇其一方法寫 */}
+                    {/* <GetImg /> */}
+                    {/* <GetImg></GetImg> */}
+                    {/* 使用自訂屬性名稱，傳值給元件 */}
+                    {/* 元件使用props接收 */}
+                    <GetImg imgUrl='https://cdn.pixabay.com/photo/2023/08/07/19/47/water-lily-8175845_1280.jpg' title="圖1" width="300px" border="5px solid #200020" />
+                    <GetImg imgUrl='https://cdn.pixabay.com/photo/2023/04/26/17/09/flower-7952950_640.jpg' title="圖2" border="5px dashed #4d4529"/>
+                </div>
+            );
+        }
+
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+    </script>
+
+</body>
+
+</html>
