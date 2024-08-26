@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 載入React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 載入babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 以下React -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // 查看React
+        // console.log(React);
+
+        // #1 建立useState
+        const { useState } = React;
+        // #2a 查看useState => useState本身是一個函式
+        console.log(useState);
+        // #2b useState只能在元件內運作，否則會出錯
+        // const [text,setText] = useState('default text');
+
+        function App() {
+            // #3 state是ReadOnly(唯獨)狀態
+            // #3a 為了上React知道資料已更新了，所以會用另一個方法告知 => set...
+            // #3b 在元件內就可以使用了
+            const [num, setNum] = useState(1);
+
+            // #3c 陣列
+            const [arr, setArr] = useState([1, 2, 3, 4, 5]);
+            // console.log(arr);
+
+            // 建立刪除陣列資料的函式(非元件)
+            function removeArrData() {
+                // 原生js寫法 => arr.pop() => 在React會出錯
+                // console.log(arr.pop());
+                // console.log(arr);
+
+                // React寫法
+                // 找到最後一個位置刪除
+                // console.log(arr.filter((item) => item !== arr.length));
+                setArr(arr.filter((item) => item !== arr.length));
+                // setArr(arr.pop());
+            }
+
+            function addArrData() {
+                // 新增資料到陣列最後方
+                // 原生js寫法 => arr.push('6') => 在React會出錯
+                // setArr(arr.push('6'))
+
+                // React寫法
+                // 用其餘陣列方法寫(...)
+                // 取得陣列中的資料
+                // console.log(...arr);
+                // 取得陣列長度
+                // console.log(arr.length);
+                // 新增內容到陣列
+                setArr([...arr, arr.length + 1]);
+            }
+
+            return (
+                <>
+                    <button onClick={() => {
+                        setNum(num + 1);
+                    }}>+</button>{num}
+
+                    <button onClick={() => {
+                        setNum(num - 1);
+                    }}>-</button>{num}
+                    <hr />
+                    {/* 讀取陣列資料給li */}
+                    <ul>
+                        {/* 要在React裡面寫js，要用大括號包起來 */}
+                        {
+                            // item是陣列的值
+                            // index是要存放索引編號
+                            arr.map((item, index) => {
+                                return (
+                                    <li key={index}>{item}</li>
+                                )
+                            })
+                        }
+                    </ul>
+                    <button onClick={addArrData}>新增陣列資料</button>
+
+                    <button onClick={removeArrData}>移除陣列資料</button>
+                </>
+            );
+        }
+
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+    </script>
+</body>
+
+</html>
+
+</body>
+
+</html>

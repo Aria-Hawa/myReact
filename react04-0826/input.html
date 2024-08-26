@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 載入React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 載入babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 原生JS寫法 -->
+    <input type="text" id="input">
+    <script>
+        let input = document.getElementById('input');
+        // change事件:游標離開之後觸發
+        input.addEventListener('change',()=>{
+            console.log('change事件被觸發=>'+input.value);
+        });
+        // keyup事件: 鍵盤彈上來時觸發
+        input.addEventListener('keyup', () => {
+            console.log('keyup事件被觸發=>'+input.value);
+        });
+    </script>
+    <hr>
+    <!-- React -->
+    <!-- 以下我的寫法，老師解法在inputUseState -->
+    <!-- <div id="root"></div>
+    <script type="text/babel">
+        // ReactHook - 狀態 useState
+        // 取得useState方法
+        const {useState} = React;
+        
+        function App() {
+            const [showImg, setshowImg] = useState('');
+            {console.log(showImg)};
+            return (
+                <>
+                <input type="text" name="" id="input2" placeholder="用onChange" onChange={()=>{
+                    setshowImg(document.getElementById('input2').value);
+                }}/>
+                <br/><br/>
+                <input type="text" name="" id="input3" placeholder="用onKeyUp" onKeyUp={()=>{
+                    setshowImg(document.getElementById('input3').value);
+                }}/>
+                </>
+                );
+            }
+            
+            ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+        </script> -->
+    </body>
+    
+</html>

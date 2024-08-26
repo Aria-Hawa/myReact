@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 載入React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 載入babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+
+    <!-- 以下React -->
+    <!-- input綁定useState -->
+    <h1>React</h1>
+    <h2>input綁定useState</h2>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+        function App() {
+            const [text, setText] = useState('')
+            return (
+                <>
+                    {/* React環境下，input標籤內的value必須要改成defaultValue */}
+                    <input type="text" id="inputReact" defaultValue="defaultValue" />
+                    <br/><br/>
+                    {/* 若堅持要用value來寫，那就要搭配onChange或readOnly事件 */}
+
+                    <input type="text" id="inputReact" value={text}
+                        // React環境下的onChange與原生js環境下的keyup是一樣的結果
+                        onChange={(e) => {
+                            // console.log(e.target.value);
+                            setText(e.target.value);
+                        }} 
+                        
+                        // 取得游標(取得焦點) => onFoucus
+                        onFocus = {()=>{
+                            console.log('onFocus');
+                            console.log(text);
+                        }}
+
+                        // 游標離開時(失去焦點) => onBlur
+                        onBlur = {()=>{
+                            console.log('onBlur');
+                            console.log(text);
+                        }}
+                        />
+
+                    {/* 顯示文字方塊內容 */}
+                    {text}
+
+                </>
+            );
+        }
+
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+    </script>
+
+
+
+</body>
+
+</html>
