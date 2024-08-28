@@ -10,24 +10,36 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <!-- 載入babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- 載入?? -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
-        integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
-
-
-
     <!-- 以下React -->
     <div id="root"></div>
 
     <script type="text/babel">
+        const {useEffect} = React;
+        
         function App() {
+            // JSX寫法
+            // useEffect方法被觸發的時間點為，當App被渲染完之後
+            useEffect(()=>{
+                document.title = 'useEffect更改了title';
+                // 在useEffect裡面做監聽事件(也就是一般js的寫法)
+                document.getElementById('btn2').addEventListener('click',()=>{
+                    document.title = '按鈕2更新title'
+                })
+
+
+
+            });
+
             return (
                 <>
-
+                    <h1>Hello,React!</h1>
+                    <button onClick={()=>{
+                        document.title = '按鈕更改title'
+                    }}>更新title</button>
+                    <button id="btn2">按鈕2</button>
                 </>
             )
         }
