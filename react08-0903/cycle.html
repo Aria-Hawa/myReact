@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 600px;
+            object-fit: contain;
+        }
+
+        .box {
+            width: 600px;
+            position: relative;
+        }
+
+        #nav {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+        }
+
+        #nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0;
+            border: 1px solid white;
+            display: block;
+            margin-bottom: 20px;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 50%;
+        }
+
+        
+    </style>
+
+    <!-- 載入React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 載入babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+    <a href=""></a>
+    <!-- 以下React -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useEffect } = React;
+
+        function App() {
+            useEffect(() => {
+                // 自行撰寫jquery
+                // 以下是沒有輪播按鈕的
+                // $(function () {
+                //     $('#imgCycle').cycle({
+                //         fx: 'turnDown',     // 輪播方式
+                //         sync: false,    // 輪播速度
+                //         delay: -2000    //第一次的第一張圖停留時間
+                //     });
+                // });
+
+                $(function () {
+                    $('#imgCycle').after('<div id="nav"></div>').cycle({
+                        fx: 'fade',     // 輪播方式
+                        sync: false,        // 輪播速度
+                        delay: -2000,       //第一次的第一張圖停留時間
+                        pager: '#nav',      // 執行已建立好的CSS樣式
+                    });
+                });
+            }, [])
+            return (
+                <>
+                    <h2>自動輪播</h2>
+                    <div class="box">
+                        <div id="imgCycle">
+                            <img src="./jQuery/lightbox/images/productBrowsing_pbShapeA_2.png" alt="" />
+                            <img src="./jQuery/lightbox/images/productBrowsing_pbShapeA_3.png" alt="" />
+                            <img src="./jQuery/lightbox/images/productBrowsing_pbShapeA_4.png" alt="" />
+                            <img src="./jQuery/lightbox/images/productBrowsing_pbShapeC_2.png" alt="" />
+                            <img src="./jQuery/lightbox/images/productBrowsing_pbShapeC_3.png" alt="" />
+                            <img src="./jQuery/lightbox/images/productBrowsing_pbShapeC_4.png" alt="" />
+                        </div>
+                        {/* div#nav>ul>li*n個 */}
+                    </div>
+
+
+                </>
+            )
+        }
+
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+
+    </script>
+
+    <!-- 設定jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- 輪播效果JS -->
+    <script src="./jQuery/js/jquery.cycle.all.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 燈箱效果css -->
+    <link rel="stylesheet" href="./jQuery/lightbox/css/lightbox.css">
+    <style>
+        img {
+            width: 200px;
+            object-fit: contain;
+        }
+    </style>
+
+    <!-- 載入React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 載入babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+    <a href=""></a>
+
+
+    <!-- 以下React -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function App() {
+            return (
+                <>
+                    <h2>燈箱效果</h2>
+                    <a href="./jQuery/lightbox/images/productBrowsing_pbShapeA_3.png" data-lightbox="jersy" data-title="Jersy01"><img src="./jQuery/lightbox/images/productBrowsing_pbShapeA_3.png" alt="" /></a>
+                    <a href="./jQuery/lightbox/images/productBrowsing_pbShapeA_2.png" data-lightbox="jersy" data-title="Jersy02"><img src="./jQuery/lightbox/images/productBrowsing_pbShapeA_2.png" alt="" /></a>     
+                    <a href="./jQuery/lightbox/images/productBrowsing_pbShapeA_4.png" data-lightbox="jersy" data-title="Jersy03"><img src="./jQuery/lightbox/images/productBrowsing_pbShapeA_4.png" alt="" /></a>
+                    <br/>
+                    <a href="./jQuery/lightbox/images/productBrowsing_pbShapeC_2.png" data-lightbox="shorts" data-title="short01"><img src="./jQuery/lightbox/images/productBrowsing_pbShapeC_2.png" alt="" /></a>
+                    <a href="./jQuery/lightbox/images/productBrowsing_pbShapeC_3.png" data-lightbox="shorts" data-title="short02"><img src="./jQuery/lightbox/images/productBrowsing_pbShapeC_3.png" alt="" /></a>
+                    <a href="./jQuery/lightbox/images/productBrowsing_pbShapeC_4.png" data-lightbox="shorts" data-title="short03"><img src="./jQuery/lightbox/images/productBrowsing_pbShapeC_4.png" alt="" /></a>
+
+
+                
+                    </>
+            )
+        }
+
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+
+    </script>
+
+    <!-- 設定jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- 燈箱效果JS -->
+    <script src="./jQuery/lightbox/js/lightbox.js"></script>
+</body>
+
+</html>
