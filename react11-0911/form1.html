@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 載入React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 載入babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 以下React -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        function App() {
+            // 1. 使用者名稱
+            const [inputName, setInputName] = useState('test');
+            // 2. 下拉選單 內容多的時候可以先建立為陣列
+            const cityArr = ['台北市','新北市','基隆市','桃園市','新竹市','苗栗市','台中市','彰化市','南投市','雲林市','嘉義市','台南市','高雄市','屏東市','宜蘭市','花蓮市','台東市'];
+            const [selectCity, setSelectCity] = useState('');
+
+
+            return (
+                <>
+                    <div>
+                        {/* 1. input */}
+                        <label htmlFor="username">使用者名稱</label>
+                        <input type="text" id="username" defaultValue={inputName} onChange={(e) => {
+                            setInputName(e.target.value);
+                        }} />
+                        文字方塊內容:{inputName}
+                        <hr />
+                        {/* 2. select */}
+                        <select name="" id="" onChange={(e)=>{
+                            setSelectCity(e.target.value);
+                        }}>
+                            <option value="" disabled>請選擇</option>
+                            {
+                                cityArr.map((city)=>{
+                                    return <option value={city} key={city}>{city}</option>
+                                })
+                            }
+                        </select>
+                        選擇城市:{selectCity}
+
+                    </div>
+                </>
+            )
+        }
+
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+    </script>
+    <!-- 設定jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</body>
+
+</html>
