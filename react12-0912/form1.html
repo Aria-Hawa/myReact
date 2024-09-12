@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 載入React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 載入babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 以下React -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        function App() {
+            // 1. 使用者名稱
+            const [inputName, setInputName] = useState('test');
+            // 2. 下拉選單 內容多的時候可以先建立為陣列
+            const cityArr = ['台北市', '新北市', '基隆市', '桃園市', '新竹市', '苗栗市', '台中市', '彰化市', '南投市', '雲林市', '嘉義市', '台南市', '高雄市', '屏東市', '宜蘭市', '花蓮市', '台東市'];
+            const [selectCity, setSelectCity] = useState('');
+            // 3. 複選下拉選單
+            const [selectCity2, setSelectCity2] = useState([]);
+            // 4. 單一個核取方塊
+            const [check, setCheck] = useState(false);
+
+            // 5. 多個核取方塊
+            const [chkList, setChkList] = useState([]);
+            // 預設值寫空字串和寫空陣列，目前結果一樣，但實際上會有差異 => React 的狀態是基於 不可變資料 的概念，所以每次變動狀態時實際上是在創造一個新的值。
+            // chkList 是一個狀態值，用來存儲多個核取方塊的值，這意味著在運行過程中chkList 應該一直維持一個「陣列」型別，因為你期望 chkList 是一個可以存放多個值的容器，這樣才能保證在整個應用中，chkList 一直保持為陣列型別，並確保後續的陣列操作能正常運行且不出現非預期行為。
+            // 建立一個function處理是否有被選取
+            const handleCheckList = (e) => {
+                // console.log(e.target.value);
+                // setChkList([...chkList, e.target.value]);
+                // console.log(e.target.checked);
+                if (e.target.checked) {
+                    setChkList([...chkList, e.target.value]);
+                } else {
+                    // 被點擊的方塊不是true的時候
+                    // 這個方塊的value從頭找誰不和他一樣，和她不一樣的值就篩選出來(!= value)
+                    setChkList(chkList.filter((item) => {
+                        return item != e.target.value
+                    }));
+                }
+            };
+
+
+
+            return (
+                <>
+                    <div>
+                        {/* 1. input */}
+                        <label htmlFor="username">使用者名稱</label>
+                        <input type="text" id="username" defaultValue={inputName} onChange={(e) => {
+                            setInputName(e.target.value);
+                        }} />
+                        文字方塊內容:{inputName}
+                        <hr />
+                        {/* 2. select */}
+                        <select name="" id="" onChange={(e) => {
+                            setSelectCity(e.target.value);
+                        }}>
+                            <option value="" disabled>請選擇</option>
+                            {
+                                cityArr.map((city) => {
+                                    return <option value={city} key={city}>{city}</option>
+                                })
+                            }
+                        </select>
+                        選擇城市:{selectCity}
+                        <hr />
+                        {/* 2. 複選select */}
+                        {/* disalbed會失效 */}
+                        <select name="" id="" multiple size="9" value={selectCity2}
+                            onChange={(e) => {
+                                // console.dir(e);
+                                // console.log(e.target.selectedOptions[0].value);
+                                // console.log([...e.target.selectedOptions].map((op)=>op.value));
+                                setSelectCity2([...e.target.selectedOptions].map((op) => op.value));
+                            }}>
+                            <option value="" >請選擇</option>
+                            {
+                                cityArr.map((city) => {
+                                    return <option value={city} key={city}>{city}</option>
+                                })
+                            }
+                        </select>
+                        選擇城市:{selectCity2}
+                        <hr />
+                        {/* 4. 單一個核取方塊checkBox */}
+                        <fieldset>
+                            <legend>單一核區方塊區域</legend>
+                            <label htmlFor="isCheck">確認狀態</label>
+                            <input type="checkbox" id="isCheck" value={check}
+                                onChange={(e) => {
+                                    // console.dir(e);
+                                    setCheck(e.target.checked);
+                                }} />{check.toString()}
+                        </fieldset>
+                        <hr />
+                        {/* 5. 多個核取方塊 */}
+                        <fieldset>
+                            <legend>多個核取方塊區域</legend>
+                            <input type="checkbox" name="drink" id="checkList" value="咖啡" onChange={handleCheckList} />
+                            <label htmlFor="checkList">咖啡</label>
+                            <input type="checkbox" name="drink" id="checkList" value="奶茶" onChange={handleCheckList} />
+                            <label htmlFor="checkList">奶茶</label>
+                            <input type="checkbox" name="drink" id="checkList" value="紅茶" onChange={handleCheckList} />
+                            <label htmlFor="checkList">紅茶</label>
+                            <input type="checkbox" name="drink" id="checkList" value="豆漿" onChange={handleCheckList} />
+                            <label htmlFor="checkList">豆漿</label>
+                            <input type="checkbox" name="drink" id="checkList" value="米漿" onChange={handleCheckList} />
+                            <label htmlFor="checkList">米漿</label>
+                            <input type="checkbox" name="drink" id="checkList" value="混漿" onChange={handleCheckList} />
+                            <label htmlFor="checkList">混漿</label>
+                            <br />
+                            被選取的飲料有:{chkList}
+                        </fieldset>
+                        <hr />
+
+                    </div>
+                </>
+            )
+        }
+
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+    </script>
+    <!-- 設定jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</body>
+
+</html>

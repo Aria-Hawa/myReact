@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 載入React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 載入babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 以下React -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        function App() {
+            // 建立送出按鈕函式
+            const handleSubmit = (e) => {
+                // 取消html的預設行為
+                e.preventDefault();
+                console.dir(e);
+            };
+            // 建立文字方塊異動函式
+            // const [uid, setUid] = useState('');
+            // const handleChange = (e) => {
+            //     setUid(e.target.value);
+            // };
+            // const [uname, setUname] = useState('');
+            // const handleChange2 = (e) => {
+            //     setUname(e.target.value);
+            // };
+
+            // 同時處理不同欄位的資料
+            const [formData, setFormData] = useState({
+                // 先給個預設值
+                uid: 'test',
+                uname: 'test',
+            });
+            const handleInputChange = (e) => {
+                // 取值
+                // console.log(e.target.value);
+                const value = e.target.value;
+                // 取input的name
+                // console.log(e.target.name);
+                const name = e.target.name;
+                setFormData({
+                    ...formData,
+                    [name]: value,
+                });
+                console.log(formData);
+            };
+
+            return (
+                <>
+                    <form onSubmit={handleSubmit}>
+                        {/* 
+                        <label htmlFor="uid">帳號</label>
+                        <input type="text" id="uid" onChange={handleChange}/>{uid}<br/>
+                        <label htmlFor="uname">名稱</label>
+                        <input type="text" id="uname"onChange={handleChange2} />{uname}<br />
+                         */}
+
+                        <label htmlFor="uid">帳號</label>
+                        <input type="text" name="uid" id="uid" value={formData.uid} onChange={handleInputChange} />{formData.uid}<br />
+
+                        <label htmlFor="uname">名稱</label>
+                        <input type="text" name="uname" id="uname" value={formData.uname} onChange={handleInputChange} />{formData.uname}<br />
+                        <button type="submit">送出</button>
+                    </form>
+                </>
+            )
+        }
+
+        ReactDOM
+            .createRoot(document.getElementById('root'))
+            .render(<App />);
+    </script>
+    <!-- 設定jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</body>
+
+</html>
